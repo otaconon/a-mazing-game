@@ -31,10 +31,10 @@ script = ExtResource("3_ugm30")
 
 [node name="Maze" type="Node3D" node_paths=PackedStringArray("sprite", "mesh")]
 script = ExtResource("1_u11kd")
-sprite = NodePath("Sprite3D")
-mesh = NodePath("MeshInstance3D")
 width = 15
 height = 15
+sprite = NodePath("Sprite3D")
+mesh = NodePath("MeshInstance3D")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, -0.1)

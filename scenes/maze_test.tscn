@@ -91,3 +91,7 @@ maze_algorithm = 1
 [node name="AldousMaze" parent="." instance=ExtResource("1_yh7yl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.398506, 0, 0)
 maze_algorithm = 2
+
+[node name="WilsonMaze" parent="." instance=ExtResource("1_yh7yl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.210355)
+maze_algorithm = 3

@@ -8,13 +8,10 @@ func generate() -> Array[int]:
   maze.resize(width*height)
   var start = Vector2i(1, 1)
   var directions: Array[Vector2i] = [ Vector2i(0, 2), Vector2i(2, 0), Vector2i(0, -2), Vector2i(-2, 0) ]
-  var unvisited = int(width * height / 4)
-  var safetyCount = 0
+  var unvisited = int(width * height as float / 4)
 
   var position = start;
-  while unvisited > 0 && safetyCount < 100000:
-    safetyCount += 1
-
+  while unvisited > 0:
     var neighbors = get_neighbors(maze, position, directions, func(_m, _x, _y): return true)
     if neighbors.size() <= 0:
       continue
