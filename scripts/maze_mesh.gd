@@ -19,7 +19,7 @@ func _init(maze, width, height):
     for z in range(height):
       if maze[z*width + x]:
         continue
-      var pos = Vector3i(x, 0, z)
+      var pos = Vector3i(x, 0, z+1)
       create_block(st, pos)
   st.generate_normals()
   st.generate_tangents()
@@ -28,19 +28,19 @@ func _init(maze, width, height):
 func create_block(st: SurfaceTool, pos: Vector3i):
   add_face(st, pos+Vector3i.UP, Vector3i.FORWARD, Vector3i.RIGHT, false)
   # Front face
-  if is_gap(pos.x, pos.z-1):
+  if is_gap(pos.x, pos.z-2):
     add_face(st, pos+Vector3i.FORWARD, Vector3i.UP, Vector3i.RIGHT, true)
 
   # Back face
-  if is_gap(pos.x, pos.z+1):
+  if is_gap(pos.x, pos.z):
     add_face(st, pos, Vector3i.UP, Vector3i.RIGHT, false)
 
   # Right face
-  if is_gap(pos.x+1, pos.z):
+  if is_gap(pos.x+1, pos.z-1):
     add_face(st, pos+Vector3i.RIGHT, Vector3i.UP, Vector3i.FORWARD, false)
 
   # Left face 
-  if is_gap(pos.x-1, pos.z):
+  if is_gap(pos.x-1, pos.z-1):
     add_face(st, pos, Vector3i.UP, Vector3i.FORWARD, true)
 
 func is_gap(x: int, z: int) -> bool:
