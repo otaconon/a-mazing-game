@@ -2,30 +2,28 @@ extends MazeAlgorithm
 
 class_name DfsMaze
 
+const _directions: Array[Vector2i] = [Vector2i(0, 2), Vector2i(2, 0), Vector2i(0, -2), Vector2i(-2, 0)]
+
 func generate() -> Array[int]:
-  var rng = RandomNumberGenerator.new()
-  var maze: Array[int] = []
-  maze.resize(width*height)
-
   var stack: Array[Vector2i] = []
-  var start = Vector2i(1, 1)
-  var directions: Array[Vector2i] = [Vector2i(0, 2), Vector2i(2, 0), Vector2i(0, -2), Vector2i(-2, 0)]
+  var pos = Vector2i(1, 1)
 
-  maze[start.y * width + start.x] = 1
-  stack.push_back(start)
+  set_cell(pos, 1) 
+  stack.push_back(pos)
   while stack.size() > 0:
-    var current = stack.back()
-    var neighbors = filter_directions(maze, current, directions, func(m, x, y): return m[y*width + x] == 0)
+    pos = stack.back()
+    var neighbors = filter_directions(pos, _directions, func(p): return !get_cell(p))
 
     if neighbors.size() > 0:
-      var direction = neighbors[rng.randi_range(0, neighbors.size()-1)];
-      var nextCell = current + direction;
-      var wall = current + (direction / 2);
+      var direction = neighbors[_rng.randi_range(0, neighbors.size()-1)]
+      var next_cell = pos + direction
+      var wall = pos + (direction / 2)
 
-      maze[nextCell.y*width + nextCell.x] = 1;
-      maze[wall.y*width + wall.x] = 1;
-      stack.push_back(nextCell);
+      set_cell(next_cell, 1)
+      set_cell(wall, 1)
+
+      stack.push_back(next_cell)
     else:
-      stack.pop_back();
+      stack.pop_back()
 
-  return maze;
+  return maze
