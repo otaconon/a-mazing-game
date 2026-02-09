@@ -15,7 +15,7 @@ func generate() -> Array[int]:
   stack.push_back(start)
   while stack.size() > 0:
     var current = stack.back()
-    var neighbors = get_neighbors(maze, current, directions, func(m, x, y): return m[y*width + x] == 0)
+    var neighbors = filter_directions(maze, current, directions, func(m, x, y): return m[y*width + x] == 0)
 
     if neighbors.size() > 0:
       var direction = neighbors[rng.randi_range(0, neighbors.size()-1)];

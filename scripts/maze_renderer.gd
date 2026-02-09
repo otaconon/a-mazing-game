@@ -2,7 +2,7 @@
 extends Node3D
 
 enum MazeAlgorithmType {
-  BINARY, DFS, ALDOUS, WILSON
+  BINARY, DFS, ALDOUS, WILSON, HUNT_AND_KILL
 }
 
 @export
@@ -29,6 +29,8 @@ func _generate_maze():
       generator = AldousMaze.new(width, height)
     MazeAlgorithmType.WILSON:
       generator = WilsonMaze.new(width, height)
+    MazeAlgorithmType.HUNT_AND_KILL:
+      generator = HuntKillMaze.new(width, height)
 
   _maze = generator.generate()
 

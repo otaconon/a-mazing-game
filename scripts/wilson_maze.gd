@@ -21,7 +21,7 @@ func generate() -> Array[int]:
     var path: Array[Vector2i] = [pos]
 
     while unvisited.has(pos):
-      var neighbors = get_neighbors(maze, pos, directions, func(_m, _x, _y): return true)
+      var neighbors = filter_directions(maze, pos, directions, func(_m, _x, _y): return true)
       if neighbors.size() <= 0:
         continue
 
